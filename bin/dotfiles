@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 [[ "$1" == "source" ]] || \
 
-echo 'Dotfiles - "Cowboy" Ben Alman - http://benalman.com/'
+echo 'Dotfiles - "OldNo7" Jason Briggs'
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then cat <<HELP
 
 Usage: $(basename "$0")
 
 See the README for documentation.
-https://github.com/cowboy/dotfiles
+https://github.com/OldNo7/dotfiles
 
+Forked from:
+https://github.com/cowboy/dotfiles
 Copyright (c) 2014 "Cowboy" Ben Alman
 Licensed under the MIT license.
 http://benalman.com/about/license/
@@ -45,8 +47,11 @@ function is_osx() {
 function is_ubuntu() {
   [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
 }
+function is_cygwin() {
+  [[ "$OSTYPE" =~ ^cygwin ]] || return 1
+ }
 function get_os() {
-  for os in osx ubuntu; do
+  for os in osx ubuntu cygwin; do
     is_$os; [[ $? == ${1:-0} ]] && echo $os
   done
 }
@@ -285,7 +290,7 @@ if [[ ! -d $DOTFILES ]]; then
   new_dotfiles_install=1
   prompt_delay=15
   e_header "Downloading dotfiles"
-  git clone --recursive git://github.com/${github_user:-cowboy}/dotfiles.git $DOTFILES
+  git clone --recursive git://github.com/${github_user:-OldNo7}/dotfiles.git $DOTFILES
   cd $DOTFILES
 elif [[ "$1" != "restart" ]]; then
   # Make sure we have the latest files.
