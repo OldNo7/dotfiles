@@ -38,21 +38,35 @@ sudo apt-get -qq update
 sudo apt-get -qq dist-upgrade
 
 # Install APT packages.
-packages=(
+packages=(  
   ansible
   build-essential
   fortune
   cowsay
   git-core
+  git
   htop
   id3tool
   libssl-dev
   mercurial
   nmap
+  traceroute
   silversearcher-ag
   sl
   telnet
   tree
+  blender
+  cura
+  opengl
+  vscode
+  dotnet-host-8.0
+  imagemagick
+  openscad
+  ns2
+  bat
+  inkscape
+  mkcert
+  libnss3-tools
 )
 
 packages=($(setdiff "${packages[*]}" "$(dpkg --get-selections | grep -v deinstall | awk '{print $1}')"))
